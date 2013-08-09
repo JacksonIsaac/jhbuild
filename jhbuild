@@ -2,14 +2,23 @@
 # -*- coding: utf-8 -*-
 
 moduleset = 'gnome-world-3.10'
+# gstreamer and gst-plugins-* are optional, you need libmad for mp3's
 modules = ['gnome-music', 'dconf', 'gstreamer', 'gst-plugins-base', 'gst-plugins-good', 'gst-plugins-bad', 'gst-plugins-ugly']
+# Skip dbus-python because it is too old in jhbuild
+# Just install package python3-dbus in Ubuntu/Debian/Fedora or dbus-python in openSUSE
 skip = ['WebKit', 'evolution', 'dbus-python']
 
+# optional. Minimizes packages to be built
 ignore_suggests = True
+
+# JHBuild uses Python 2 by default
 module_extra_env['pygobject'] = {'PYTHON': 'python3'}
 module_extra_env['dbus-python'] = {'PYTHON': 'python3'}
+# For Debian/Ubuntu which don't use systemd
 module_autogenargs['polkit'] = '--enable-libsystemd-login=no --disable-static --disable-gtk-doc'
 
+# These lines are needed if you cannot use git://
+# (i.e. you use a proxy or a firewall blocks it)
 repos['git.gnome.org'] = 'https://git.gnome.org/browse/'
 repos['git.freedesktop.org'] = 'http://anongit.freedesktop.org/git/'
 repos['wayland.freedesktop.org'] = 'http://anongit.freedesktop.org/git/wayland/'
