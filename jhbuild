@@ -1,9 +1,9 @@
 # -*- mode: python -*-
 # -*- coding: utf-8 -*-
 
-moduleset = 'gnome-world-3.10'
+moduleset = 'gnome-world-3.12'
 # gstreamer and gst-plugins-* are optional, you need libmad for mp3's
-modules = ['gnome-music', 'dconf', 'gstreamer', 'gst-plugins-base', 'gst-plugins-good', 'gst-plugins-bad', 'gst-plugins-ugly']
+modules = ['gnome-music','gobject-introspection', 'grilo' , 'grilo-plugins' , 'gtk+','gnome-icon-theme-symbolic','gvfs','pygobject','tracker','gnome-themes-standard', 'gst-plugins-base', 'gst-plugins-good', 'gst-plugins-bad', 'gst-plugins-ugly']
 # Skip dbus-python because it is too old in jhbuild
 # Just install package python3-dbus in Ubuntu/Debian/Fedora or dbus-python in openSUSE
 skip = ['WebKit', 'evolution', 'dbus-python']
@@ -19,12 +19,12 @@ module_autogenargs['polkit'] = '--enable-libsystemd-login=no --disable-static --
 
 # These lines are needed if you cannot use git://
 # (i.e. you use a proxy or a firewall blocks it)
-repos['git.gnome.org'] = 'https://git.gnome.org/browse/'
-repos['git.freedesktop.org'] = 'http://anongit.freedesktop.org/git/'
-repos['wayland.freedesktop.org'] = 'http://anongit.freedesktop.org/git/wayland/'
-repos['gstreamer.freedesktop.org'] = 'http://anongit.freedesktop.org/git/gstreamer/'
-repos['github.com'] = 'https://github.com/'
-repos['git://git.gnome.org/libgd'] = 'https://git.gnome.org/browse/libgd'
+#repos['git.gnome.org'] = 'https://git.gnome.org/browse/'
+#repos['git.freedesktop.org'] = 'http://anongit.freedesktop.org/git/'
+#repos['wayland.freedesktop.org'] = 'http://anongit.freedesktop.org/git/wayland/'
+#repos['gstreamer.freedesktop.org'] = 'http://anongit.freedesktop.org/git/gstreamer/'
+#repos['github.com'] = 'https://github.com/'
+#repos['git://git.gnome.org/libgd'] = 'https://git.gnome.org/browse/libgd'
 # edit this file to match your settings and copy it to ~/.config/jhbuildrc
 
 # if you have a GNOME git account, uncomment this line
@@ -58,3 +58,4 @@ prefix = '/home/jackson/repo'
 # A string listing additional arguments to be passed to make.
 # Set makeargs to 'V=1' for verbose build output.
 #makeargs = ''
+
