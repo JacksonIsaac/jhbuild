@@ -1,0 +1,61 @@
+# -*- mode: python -*-
+# -*- coding: utf-8 -*-
+
+moduleset = 'gnome-world-3.12'
+# gstreamer and gst-plugins-* are optional, you need libmad for mp3's
+modules = ['gnome-music','gobject-introspection', 'grilo' , 'grilo-plugins' , 'gtk+','gnome-icon-theme-symbolic','gvfs','pygobject','tracker','gnome-themes-standard', 'gst-plugins-base', 'gst-plugins-good', 'gst-plugins-bad', 'gst-plugins-ugly']
+# Skip dbus-python because it is too old in jhbuild
+# Just install package python3-dbus in Ubuntu/Debian/Fedora or dbus-python in openSUSE
+skip = ['WebKit', 'evolution', 'dbus-python']
+
+# optional. Minimizes packages to be built
+ignore_suggests = True
+
+# JHBuild uses Python 2 by default
+module_extra_env['pygobject'] = {'PYTHON': 'python3'}
+module_extra_env['dbus-python'] = {'PYTHON': 'python3'}
+# For Debian/Ubuntu which don't use systemd
+module_autogenargs['polkit'] = '--enable-libsystemd-login=no --disable-static --disable-gtk-doc'
+
+# These lines are needed if you cannot use git://
+# (i.e. you use a proxy or a firewall blocks it)
+#repos['git.gnome.org'] = 'https://git.gnome.org/browse/'
+#repos['git.freedesktop.org'] = 'http://anongit.freedesktop.org/git/'
+#repos['wayland.freedesktop.org'] = 'http://anongit.freedesktop.org/git/wayland/'
+#repos['gstreamer.freedesktop.org'] = 'http://anongit.freedesktop.org/git/gstreamer/'
+#repos['github.com'] = 'https://github.com/'
+#repos['git://git.gnome.org/libgd'] = 'https://git.gnome.org/browse/libgd'
+# edit this file to match your settings and copy it to ~/.config/jhbuildrc
+
+# if you have a GNOME git account, uncomment this line
+# repos['git.gnome.org'] = 'ssh://user@git.gnome.org/git/'
+
+# what module set should be used.  The default can be found in
+# jhbuild/defaults.jhbuildrc, but can be any file in the modulesets directory
+# or a URL of a module set file on a web server.
+# moduleset = 'gnome-apps-3.4'
+#
+# A list of the modules to build.  Defaults to the GNOME core and tested apps.
+# modules = [ 'meta-gnome-core', 'meta-gnome-apps-tested' ]
+
+# Or to build the old GNOME 2.32:
+# moduleset = 'gnome2/gnome-2.32'
+# modules = ['meta-gnome-desktop']
+
+# what directory should the source be checked out to?
+checkoutroot = '~/checkout/gnome'
+
+# the prefix to configure/install modules to (must have write access)
+prefix = '/home/jackson/repo'
+
+# custom CFLAGS / environment pieces for the build
+# os.environ['CFLAGS'] = '-Wall -g -O0'
+
+# extra arguments to pass to all autogen.sh scripts
+# to speed up builds of GNOME, try '--disable-static --disable-gtk-doc'
+#autogenargs=''
+
+# A string listing additional arguments to be passed to make.
+# Set makeargs to 'V=1' for verbose build output.
+#makeargs = ''
+
